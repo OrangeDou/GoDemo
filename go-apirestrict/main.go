@@ -1,38 +1,32 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"sync"
 )
 
-const jsonString = `{"name": "John Doe", "age": 30, "is_active": true}`
-
-type User struct {
-	Name     string `json:"name"`
-	Age      int    `json:"age"`
-	IsActive bool   `json:"is_active"`
-}
+var (
+	wg      sync.WaitGroup
+	taskNum int
+)
 
 func main() {
-	var user User
-	user.Name = "OrangeDou"
-	user.Age = 25
-	user.IsActive = true
-	value, err := json.Marshal(user)
-	if err != nil {
-		return
+	taskNum = 100
+	for i := 0; i < taskNum; i++ {
+		wg.Add(1)
+		go requestTask(&wg)
 	}
-	http.HandleFunc("/getUserInfo", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, "%s", value)
-
-	})
-
-	http.ListenAndServe(":8080", nil)
+	wg.Wait()
+	fmt.Print("request has done!")
 }
 
-// 模拟高并发访问api
-// func requestApi(url string) (times int) {
+func requestTask(wg *sync.WaitGroup) {
+	defer wg.Done()
+	_, err := http.Get("http://localhost:8080/redis")
+	if err != nil {
+		log.Print(err)
+	}
 
-// }
+}
