@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"demo/go-streamoutput/logic"
+	"godemo/go-streamoutput/logic"
 	"log"
 	"net/http"
 )

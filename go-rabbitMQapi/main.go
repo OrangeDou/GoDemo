@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"rabit/service"
+	"godemo/go-rabbitMQapi/service"
+
 	"sync"
 )
 

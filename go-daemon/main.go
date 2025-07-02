@@ -1,7 +1,7 @@
 package main
 
 import (
-	"demo/go-daemon/service"
+	"godemo/go-daemon/service"
 	"log"
 	"os"
 	"os/signal"

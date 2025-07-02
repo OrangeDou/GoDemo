@@ -1,7 +1,7 @@
 package main
 
 import (
-	"demo/go-apirestrict/handler"
+	"godemo/go-apirestrict/handler"
 	"log"
 	"net/http"
 )

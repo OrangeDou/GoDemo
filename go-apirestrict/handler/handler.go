@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"demo/go-apirestrict/redis"
 	"encoding/json"
+	"godemo/go-apirestrict/redis"
 	"log"
 	"net/http"
 )
